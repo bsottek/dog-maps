@@ -5,7 +5,20 @@ html { box-sizing: border-box;
 body {
   background-color: blue;
   color: #ffffff;
-  font-family: Arial
+  font-family: Arial;
+}
+
+section {
+  padding: 20px;
+  border: 15px;
+}
+
+h1 { font-size: large;
+}
+
+h2 { font-size: medium;
+}
+  
 
 .flex-container {
   display:flex;
