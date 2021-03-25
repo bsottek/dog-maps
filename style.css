@@ -1,0 +1,15 @@
+html { box-sizing: border-box;
+  font-size: 100%;
+}
+
+.flex-container {
+  display:flex;
+}
+
+.first-content { 
+  flex:0
+}
+
+.second-content {
+  flex:0
+}
