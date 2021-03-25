@@ -2,15 +2,18 @@ html { box-sizing: border-box;
   font-size: 100%;
 }
 
+*, *:before, *after {
+  box-sizing: inherit;
+}
 body {
-  background-color: blue;
+  background-color: grey;
   color: #ffffff;
   font-family: Arial;
 }
 
 section {
   padding: 20px;
-  border: 15px;
+  border-radius: 15px;
 }
 
 h1 { font-size: large;
