@@ -2,6 +2,11 @@ html { box-sizing: border-box;
   font-size: 100%;
 }
 
+body {
+  background-color: blue;
+  color: #ffffff;
+  font-family: Arial
+
 .flex-container {
   display:flex;
 }
