@@ -2,7 +2,7 @@ html { box-sizing: border-box;
   font-size: 100%;
 }
 
-*, *:before, *after {
+*, *:before, *:after {
   box-sizing: inherit;
 }
 body {
@@ -22,15 +22,16 @@ h1 { font-size: large;
 h2 { font-size: medium;
 }
   
-
 .flex-container {
+  @media (min-width: 56.25em) {
   display:flex;
+  }
 }
 
 .first-content { 
-  flex:0
+  flex:1
 }
 
 .second-content {
-  flex:0
+  flex:1
 }
