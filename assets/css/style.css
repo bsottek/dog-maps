@@ -38,15 +38,15 @@ section {
 }
 
   
-.flex-container {
+.intro-container {
   display:flex;
 }
 
-.first-content { 
+.intro-a { 
   flex:1
 }
 
-.second-content {
+.intro-b {
   flex:1
 }
 
