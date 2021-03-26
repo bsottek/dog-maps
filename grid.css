@@ -1,5 +1,6 @@
 .grid-container {
     display: grid;
+    /*justify-content: space-evenly;*/
     grid-template-columns: auto auto auto;
     background-color: none;
     padding: 10px;
@@ -11,12 +12,16 @@
     padding: 20px;
     font-size: 30px;
     text-align: center;
+    /*flex-grow: 1;*/
   }
   
   .grid-header {
     text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
   }
 
   .grid-description {
     text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: smaller;
   }
