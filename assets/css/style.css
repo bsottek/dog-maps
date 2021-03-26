@@ -1,0 +1,33 @@
+body, html{
+  height: 100%;
+  margin-top: 0%;
+}
+/* the hero image*/
+.heroImg{
+  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+  url("https://phoenix.org/wp-content/uploads/2015/11/11792725_m.jpg");
+  height:60%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  margin-top: 0;
+  
+}
+.heroTxt{
+  text-align: center;
+  position: relative;
+  top: 20%;
+  bottom: 50%;
+  color:  white;
+}
+
+h1, p{
+  font-family: Arial, Helvetica, sans-serif;
+}
+.btn{
+  background-color: gray;
+  border: none;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+}
