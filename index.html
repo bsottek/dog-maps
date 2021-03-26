@@ -1,20 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Simple Map</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <script src="script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROAM</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
-    <div id="map"></div>
+    <div class="heroImg">
+        <div class="heroTxt">
+            <h1>HAVE A GREAT WALK!</h1>
+            <p>Dog maps will send you a map curated to your area</p>
+            <p>with all that a dog and its human will need for a safe</p>
+            <p>day of adventure.</p>
+            <input class="location" type="text" placeholder="Enter your zip code">
+            <button class="btn">DOGMAP</button>
 
-    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+
+
+        </div>
+    </div>
+    <div class="infoExp">
+        <div class="expTxt">
+            <h1>Seamless Real Life Experience</h1>
+            <p>Be a part of the dog walking app we've all been waiting for.</p>
+        </div>
+    </div>
+    <div class="infoTech">
+        <div class="techTxt">
+            <h1>Ground-Breaking Technology</h1>
+            <p>Short description of your product's features</p>
+        </div>
+    </div>
+
+    <div id="map"></div>
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB17S8T5EobvJH287-4DKPnyZxSzb5GP9s&callback=initMap&libraries=&v=weekly"
         async></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
