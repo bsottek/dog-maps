@@ -16,9 +16,18 @@
             <p>Dog maps will send you a map curated to your area</p>
             <p>with all that a dog and its human will need for a safe</p>
             <p>day of adventure.</p>
-            <input class="location" type="text" placeholder="Enter your zip code">
-            <button class="btn">DOGMAP</button>
-
+            <div class="main-form">
+                <input class="search-input" id="location" type="text" placeholder="Enter your zip code">
+                <select class="search-input" name="radius" id="radius">
+                    <option value="" disabled selected>Search Radius</option>
+                    <option value="5">5 mi.</option>
+                    <option value="10">5 mi.</option>
+                    <option value="15">15 mi.</option>
+                    <option value="20">20 mi.</option>
+                </select>
+                <input type="text" class="search-input" id="keyword" placeholder="Search keywords">
+                <button class="btn">DOGMAP</button>
+            </div>
 
 
         </div>
