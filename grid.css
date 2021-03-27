@@ -1,28 +1,54 @@
 .grid-container {
-    display: grid;
-    /*justify-content: space-evenly;*/
-    grid-template-columns: auto auto auto;
-    background-color: none;
-    padding: 10px;
-  }
-  
-  
-  .grid-item {
-    background-color: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    font-size: 30px;
-    text-align: center;
-    /*flex-grow: 1;*/
-  }
-  
-  .grid-header {
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-  }
+  display: grid;
+  justify-content: center;
+  grid-template-columns: auto auto auto;
+  background-color: none;
+  padding: 10px;
+}
 
-  .grid-description {
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: smaller;
-  }
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+  flex-grow: 1;
+  cursor: pointer;
+}
+
+/* Darker background on mouse-over */
+.grid-item:hover {
+  background-color: rgb(159, 172, 211);
+}
+
+.grid-header {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.grid-description {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: smaller;
+}
+
+.icon-description {
+  font-size: 20px;
+  flex-grow: 1;
+}
+
+/* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
+@media screen and (max-width: 980px) {
+}
+
+/* MEDIA QUERY FOR TABLETS AND SMALLER */
+@media screen and (max-width: 768px) {
+}
+
+/* MEDIA QUERY FOR MOBILE PHONES AND SMALLER */
+@media screen and (max-width: 575px) {
+    .grid-container {
+        display: flex;
+        flex-direction: column;
+}
+}
