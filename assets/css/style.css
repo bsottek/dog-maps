@@ -40,7 +40,7 @@ section {
  
 .intro-container {
   display:flex;
-  flex-direction: row
+  flex-wrap: wrap;
 }
 
 .intro-container h2 {
@@ -50,6 +50,7 @@ section {
 .intro-container p {
   color: #798da3;
   font-size: 12px;
+  padding: 0 70px;
 }
 
 .intro-container section {
@@ -63,8 +64,16 @@ section {
 .intro-img {
   width: 50%;
   height: auto;
-  position: relative;  
+  position: relative; 
   }
+
+  /*
+  @media only screen and (max-width:768 px) {
+    .intro-container {
+      flex-direction: column;
+    }
+  }*/
+
 
 .grid-container {
   display: grid;
