@@ -37,18 +37,34 @@ section {
   border-radius: 15px;
 }
 
-  
+ 
 .intro-container {
   display:flex;
+  flex-direction: row
 }
 
-.intro-a { 
-  flex:1
+.intro-container h2 {
+  color: #3b4754;
+  font-size: 24px;
+}
+.intro-container p {
+  color: #798da3;
+  font-size: 12px;
 }
 
-.intro-b {
-  flex:1
+.intro-container section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
+
+.intro-img {
+  width: 50%;
+  height: auto;
+  position: relative;  
+  }
 
 .grid-container {
   display: grid;
