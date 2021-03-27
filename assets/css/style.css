@@ -31,3 +31,49 @@ h1, p{
   color: black;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+section {
+  padding: 20px;
+  border-radius: 15px;
+}
+
+  
+.intro-container {
+  display:flex;
+}
+
+.intro-a { 
+  flex:1
+}
+
+.intro-b {
+  flex:1
+}
+
+.grid-container {
+  display: grid;
+  /*justify-content: space-evenly;*/
+  grid-template-columns: auto auto auto;
+  background-color: none;
+  padding: 10px;
+}
+  
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+  /*flex-grow: 1;*/
+}
+
+.grid-header {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.grid-description {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: smaller;
+}
