@@ -6,12 +6,17 @@ body, html{
 .heroImg{
   background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
   url("https://phoenix.org/wp-content/uploads/2015/11/11792725_m.jpg");
-  height:60%;
+  height:80%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
   margin-top: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+
   
 }
 .heroTxt{
@@ -20,16 +25,44 @@ body, html{
   top: 20%;
   bottom: 50%;
   color:  white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.heroTxt h1{
+  flex: 80%;
+}
+
+.main-form{
+  border: 3px solid black;
+  border-radius: 10px;
+  background-color: #024e76;
+  width: 50%;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:center;
+}
+
+.search-input{
+  margin: 10px 10px;
+  padding: 5px;
+
 }
 
 h1, p{
   font-family: Arial, Helvetica, sans-serif;
 }
+
 .btn{
   background-color: gray;
   border: none;
   color: black;
   font-family: Arial, Helvetica, sans-serif;
+  padding: 5px 10px;
+  flex: 80%;
 }
 
 section {
