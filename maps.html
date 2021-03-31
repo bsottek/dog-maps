@@ -11,7 +11,11 @@
         var sdsDataSourceUrl = "http://spatial.virtualearth.net/REST/v1/data/Microsoft/PointsOfInterest";
 
         function GetMap() {
-            map = new Microsoft.Maps.Map('#map', {});
+            map = new Microsoft.Maps.Map('#map', {
+                credentials: 'AuqWN0H7ork1R33gaSwoiQ-0J7A6XmwHHtCD5UUwQBYa9KYVH9KZL_3i17KseieW',
+                //need to sub in a variable containing user input
+                center: new Microsoft.Maps.Location(36.151,-86.856)
+            });
 
             //Create an infobox at the center of the map but don't show it.
             infobox = new Microsoft.Maps.Infobox(map.getCenter(), {
@@ -44,7 +48,7 @@
                     location: map.getCenter(),
                     radius: 25
                 },
-                //Filter to retrieve Gas Stations.
+                //Filter to retrieve parks.
                 filter: new Microsoft.Maps.SpatialDataService.Filter('EntityTypeID', 'eq', 7947)
             };
 
