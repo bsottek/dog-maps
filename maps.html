@@ -1,53 +1,110 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title></title>
     <meta charset="utf-8" />
-	<script type='text/javascript'>
-    var map;
+    <script type='text/javascript'>
+        var map;
 
-    //Query URL to the NAVTEQ POI data source
-    var sdsDataSourceUrl = 'https://spatial.virtualearth.net/REST/v1/data/f22876ec257b474b82fe2ffcb8393150/NavteqNA/NavteqPOIs';
+        //Query URL to the NAVTEQ POI data source
+        var sdsDataSourceUrl = "http://spatial.virtualearth.net/REST/v1/data/Microsoft/PointsOfInterest";
 
-    function GetMap() {
-        map = new Microsoft.Maps.Map('#map', {});
+        function GetMap() {
+            map = new Microsoft.Maps.Map('#map', {});
 
-        //Load the Bing Spatial Data Services module.
-        Microsoft.Maps.loadModule('Microsoft.Maps.SpatialDataService', function () {
-            //Add an event handler for when the map moves.
-            Microsoft.Maps.Events.addHandler(map, 'viewchangeend', getNearByLocations);
+            //Create an infobox at the center of the map but don't show it.
+            infobox = new Microsoft.Maps.Infobox(map.getCenter(), {
+                visible: false
+            });
 
-            //Trigger an initial search.
-            getNearByLocations();
-        });
-    }
+            //Assign the infobox to a map instance.
+            infobox.setMap(map);
 
-    function getNearByLocations() {
-        //Remove any existing data from the map.
-        map.entities.clear();
+            //Load the Bing Spatial Data Services module.
+            Microsoft.Maps.loadModule('Microsoft.Maps.SpatialDataService', function () {
+                //Add an event handler for when the map moves.
+                Microsoft.Maps.Events.addHandler(map, 'viewchangeend', getNearByLocations);
 
-        //Create a query to get nearby data.
-        var queryOptions = {
-            queryUrl: sdsDataSourceUrl,
-            spatialFilter: {
-                spatialFilterType: 'nearby',
-                location: map.getCenter(),
-                radius: 25
-            },
-            //Filter to retrieve Gas Stations.
-            filter: new Microsoft.Maps.SpatialDataService.Filter('EntityTypeID','eq',5540) 
-        };
+                //Trigger an initial search.
+                getNearByLocations();
 
-        //Process the query.
-        Microsoft.Maps.SpatialDataService.QueryAPIManager.search(queryOptions, map, function (data) {
-            //Add results to the map.
-            map.entities.push(data);
-        });
-    }
+            });
+        }
+
+        function getNearByLocations() {
+            //Remove any existing data from the map.
+            map.entities.clear();
+
+            //Create a query to get nearby data.
+            var queryOptions = {
+                queryUrl: sdsDataSourceUrl,
+                spatialFilter: {
+                    spatialFilterType: 'nearby',
+                    location: map.getCenter(),
+                    radius: 25
+                },
+                //Filter to retrieve Gas Stations.
+                filter: new Microsoft.Maps.SpatialDataService.Filter('EntityTypeID', 'eq', 7947)
+            };
+
+            //Process the query.
+            Microsoft.Maps.SpatialDataService.QueryAPIManager.search(queryOptions, map, function (data) {
+                //Add results to the map.
+                // map.entities.push(data);
+                console.log(data);
+
+                for (var i = 0; i < data.length; i++) {
+
+                    var location = {
+                        latitude: data[i].geometry.y,
+                        longitude: data[i].geometry.x
+                    };
+
+                    var pin = new Microsoft.Maps.Pushpin(location);
+
+                    console.log(location);
+
+                    //Store some metadata with the pushpin.
+                    pin.metadata = {
+                        title: data[i].metadata.DisplayName,
+                        id: data[i].id,
+                        name: data[i].metadata.DisplayName,
+                        description: data[i].metadata.AddressLine
+                    };
+
+                    console.log(pin.metadata);
+
+                    //Add pushpin to the map.
+                    map.entities.push(pin);
+                    // debugger;
+                    //Add a click event handler to the pushpin.
+                    Microsoft.Maps.Events.addHandler(pin, 'click', pushpinClicked);
+                }
+            });
+
+        }
+
+        function pushpinClicked(e) {
+            //Make sure the infobox has metadata to display.
+            if (e.target.metadata) {
+                //Set the infobox options with the metadata of the pushpin.
+                infobox.setOptions({
+                    location: e.target.getLocation(),
+                    title: e.target.metadata.title,
+                    description: e.target.metadata.description,
+                    visible: true
+                });
+            }
+        }
     </script>
-    <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AuqWN0H7ork1R33gaSwoiQ-0J7A6XmwHHtCD5UUwQBYa9KYVH9KZL_3i17KseieW' async defer></script>
+    <script type='text/javascript'
+        src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AuqWN0H7ork1R33gaSwoiQ-0J7A6XmwHHtCD5UUwQBYa9KYVH9KZL_3i17KseieW'
+        async defer></script>
 </head>
+
 <body>
     <div id="map" style="position:relative;width:600px;height:400px;"></div>
 </body>
+
 </html>
