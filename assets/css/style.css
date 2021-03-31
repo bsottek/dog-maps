@@ -26,7 +26,7 @@ body, html, h1{
 }
 .navbar a:hover{
   color: rgb(226, 196, 157);
-  transition: 0.5s ease-in-out 0s;
+  transition: 0.5s ease-in-out 0s; /*gradual transition*/
   opacity: 8;
 }
 li{
@@ -44,22 +44,26 @@ li a {
   align-items: center;
   color: #333;
 }
+/*span{ getting rid of 'o' in 'dogmaps' for paw
+  color:rgb(226, 196, 157);
+} */
 
 /*paw print logo*/
-.pad {
-  width: 7px;
-  height: 8.5px;
+/*.pad { 
+  width: 7.5px;
+  height: 11px;
   background-color: #333;
   border-radius: 50% 50% 40% 40%/ 60% 60% 40% 40%;
   display: block;
   position: absolute;
-}
-.large{
-  width: 20px;
-  height: 22px;
-  transform: rotate(20deg);
-  left: 100px;
-  top: 50px;
+}*/
+/*.large{ 
+  width: 30px;
+  height: 26px;
+  transform: rotate(50deg);
+  left: 96px;
+  top: 54px;
+  border-radius: 40% 40% 40% 40%/ 60% 60% 40% 40%;
 }
 .small-1{
   transform: rotate(55deg);
@@ -72,10 +76,10 @@ li a {
   top: 48px;
 }
 .small-3{
-  transform: rotate(90deg);
+  transform: rotate(77deg);
   position: absolute;
-  left: 122px;
-  top: 57px;
+  left: 126px;
+  top: 58px;
 }
 
 .paw-print-1{
@@ -87,43 +91,7 @@ li a {
   display: table;
   margin: 0;
   margin-left: -82px;
-}
-
-/*mountain logo*/
-/*.mountains{
-  overflow: hidden;
-  position: absolute;
-  top: 0;
-  left: 20px;
-  bottom: 715px;
-  right: 0;
-}
-.mountain-1, .mountain-2, .mountain-3{
-  position: absolute;
-  bottom: -20px;
-  border-left: 40px solid transparent;
-  border-right: 40px solid transparent;
-  border-bottom: 55px solid #333;
-}
-.mountain-3{
-  left: 79px;
-  bottom: -22px;
-  z-index: 0;
-}
-.mountain-3{
-  left: 79px;
-  bottom: -22px;
-  z-index: 0;
-}
-.mountain-3{
-  left: 79px;
-  bottom: -22px;
-  z-index: 0;
-}
-.mountain-top{
-  position
 }*/
-
 
 
 /* the hero image*/
@@ -138,7 +106,7 @@ li a {
   margin-top: 0%;
   background-origin: content-box;
 }
-
+/*text inside pictures*/
 .heroTxt{
   text-align: center;
   position: relative;
@@ -147,14 +115,22 @@ li a {
   color:rgb(219, 211, 211);
   font-size: larger;
 }
-
+/*dogmap button*/
 .btn{
   background-color: rgb(204, 197, 197);
   border: none;
   color: black;
   font-family: Arial, Helvetica, sans-serif;
-}
+  border-bottom-left-radius: 3px;
+  /*curving edges*/
+  border-top-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
 
+}
+input:focus{ /*gets rid of blue outline in text box*/
+  outline: none;
+}
 /*flexbox start*/
 .container1{
   display: flex;

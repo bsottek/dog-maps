@@ -12,3 +12,8 @@ function initMap() {
         zoom: 8,
     });
 }
+
+//button function
+document.getElementById('eventButton').onclick = function() [
+    alert('hello world');
+];
