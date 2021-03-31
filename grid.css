@@ -37,6 +37,14 @@
   flex-grow: 1;
 }
 
+.subscribe-form {
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+}
+
 /* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
 @media screen and (max-width: 980px) {
 }
@@ -47,8 +55,8 @@
 
 /* MEDIA QUERY FOR MOBILE PHONES AND SMALLER */
 @media screen and (max-width: 575px) {
-    .grid-container {
-        display: flex;
-        flex-direction: column;
-}
+  .grid-container {
+    display: flex;
+    flex-direction: column;
+  }
 }
