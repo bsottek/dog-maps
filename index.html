@@ -1,39 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROAM</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+        <title>DogMaps</title>
+        <link rel = "stylesheet" href = "assets/css/style.css">
+    </head>
 
 <body>
-    <div class="heroImg">
-        <div class="heroTxt">
+    <!--Navbar-->
+    <nav class = "navbar">
+            <div class = "logo">DogMaps</div>
+            <ul class = "menu">
+        <li><a href = "#contact-us">Contact Us</a></li>
+        <li><a href = "#privacy-notice">Privacy Notice</a></li>
+        <li><a href = "#friends-nearby">Friends Nearby</a></li>
+        <li><a href = "#your-walks">Your Walks</a></li>
+        <li><a href = "#home">Home</a></li>
+            </ul>   
+    </nav>
+    
+
+      <div class = "heroImg">
+        <div class = "heroTxt">
             <h1>HAVE A GREAT WALK!</h1>
             <p>Dog maps will send you a map curated to your area</p>
-            <p>with all that a dog and its human will need for a safe</p>
+            <p>with all that a dog and their human will need for a safe</p>
             <p>day of adventure.</p>
-            <input class="location" type="text" placeholder="Enter your zip code">
-            <button class="btn">DOGMAP</button>
+            <input class = "location" type= "text" placeholder="Enter your zip code">
+            <button class = "btn">DOGMAP</button>
+          </div>
+    </div> 
+    
 
-
-
+    <div class = "container1">
+        <div class = "box1">
+            <h1>The Dog Walking App We've All Been Anticipating</h1>
+            <p>Have you ever been on a walk or hike with your dog and gotten caught</p>
+            <p>in some unprecedented, daunting, weather conditions? If so, you</p>
+            <p>probably know how unpleasant, and potentially dangerous, it is</p>
+            <p>to be stuck in a storm with your pet. 
+            <p>Luckily, our team has created an application that allows</p>
+            <p>you to quickly and efficiently ensure that you and your furry friend spend</p>
+            <p>the day together in the safest conditions at the most desireable trails</p>
+            <p>or parks near you - all you have to do is enter your zip code and we</p>
+            <p>do the rest. For you and your pups next adventure, the only thing you'll </p>
+            <p>need is a leash, a ball and DogMaps.</p>
         </div>
-    </div>
-    <div class="infoExp">
-        <div class="expTxt">
-            <h1>Seamless Real Life Experience</h1>
-            <p>Be a part of the dog walking app we've all been waiting for.</p>
-        </div>
-    </div>
-    <div class="infoTech">
-        <div class="techTxt">
+        <div class = "box2">
             <h1>Ground-Breaking Technology</h1>
-            <p>Short description of your product's features</p>
+            <p>DogMaps is equipped with the best and most reliable resources to</p>
+            <p>provide you with the best experience. We have integrated a variety</p>
+            <p>of Application Programming Interfaces to gather the most up to date,</p>
+            <p>accurate, information about your area. You no longer have to look</p>
+            <p>up the best parks and trails to visit, we've got that covered.</p>
         </div>
     </div>
+  </body>
+</html>           
+         
+
+
+
+
+     
+      
+   
+    
+  
+   
+
+    <h1 class="grid-header">Main Features</h1>
+    <h2 class="grid-description">Introduce the amazing range of ground-breaking features that your new release will include.</h2>
+    <div class="grid-container">
+        <div class="grid-item"><i class="far fa-bell"></i></div>
+        <div class="grid-item"><i class="far fa-chart-bar"></i></div>
+        <div class="grid-item"><i class="fas fa-lock"></i></div>
+        <div class="grid-item"><i class="fas fa-book"></i></div>
+        <div class="grid-item"><i class="far fa-credit-card"></i></div>
+        <div class="grid-item"><i class="fas fa-compass"></i></div>
+        <div class="grid-item"><i class="far fa-comment-alt"></i></div>
+        <div class="grid-item"><i class="fas fa-camera"></i></div>
+        <div class="grid-item"><i class="fab fa-contao"></i></div>
+      </div>
+
+<!--subscribe form-->
+<div class="subscribe-form">
+    <h3>Be the First to Access It</h3>
+    <h4>Subscribe to receive updates and join our beta list.</h4>
+    <form>
+      <input type="email" id="contact-email" placeholder="Enter your email" />
+
+      <button type="submit">SUBSCRIBE</button>
+    </form>
+  </div>
+<br>
+<br>
+  <!--footer-->
+  <footer>
+    <div>&copy; 2021 Dog Maps, Inc.</div>
+  </footer>
+
 
     <div id="map"></div>
     <script
