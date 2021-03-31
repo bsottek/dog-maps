@@ -19,22 +19,38 @@
 /* Darker background on mouse-over */
 .grid-item:hover {
   background-color: rgb(159, 172, 211);
+  transition: all 0.3s ease;
 }
 
 .grid-header {
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .grid-description {
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: smaller;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 19px;
 }
 
 .icon-description {
-  font-size: 20px;
+  font-size: 19px;
   flex-grow: 1;
+}
+
+.subscribe-form {
+  text-align: center;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+footer {
+  font-size: 15px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.button {
+  background-color: rgb(159, 172, 211)
 }
 
 /* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
@@ -47,8 +63,8 @@
 
 /* MEDIA QUERY FOR MOBILE PHONES AND SMALLER */
 @media screen and (max-width: 575px) {
-    .grid-container {
-        display: flex;
-        flex-direction: column;
-}
+  .grid-container {
+    display: flex;
+    flex-direction: column;
+  }
 }
