@@ -19,7 +19,7 @@ class Fetch {
         //make request to url
 
         const response = await fetch(
-            `http://api.weatherbit.io/v2.0/forecast/daily?key=${myKey}&units=I&days=1&postal_code=${input}&city=${input}`
+            `http://api.weatherbit.io/v2.0/forecast/daily?key=${myKey}&units=I&days=1&city=${input}`
         );
 
         const data = await response.json();
@@ -55,6 +55,7 @@ class UI {
                 <h5 class="card-title">${data.data[0].high_temp}-High-Temp</h5>
                 <h5 class="card-title">${data.data[0].low_temp}-Low-Temp</h5>
                 <h5 class="card-title">${data.data[0].wind_gust_spd}-Wind Gust Speed</h5>
+
                 
 
                 
