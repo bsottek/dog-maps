@@ -1,17 +1,102 @@
-// This is a prototype for google maps api
-// by Dallas Yatsinko
+//start map function
 
-const apiKey = "key=AIzaSyB17S8T5EobvJH287-4DKPnyZxSzb5GP9s";
+var sdsDataSourceUrl = "http://spatial.virtualearth.net/REST/v1/data/Microsoft/PointsOfInterest";
 
+function GetMap() {
+    map = new Microsoft.Maps.Map('#map', {
+        credentials: 'AuqWN0H7ork1R33gaSwoiQ-0J7A6XmwHHtCD5UUwQBYa9KYVH9KZL_3i17KseieW',
+        //need to sub in a variable containing user input
+        center: new Microsoft.Maps.Location(37.151, -86.856)
+    });
 
-let map;
+    //Create an infobox at the center of the map but don't show it.
+    infobox = new Microsoft.Maps.Infobox(map.getCenter(), {
+        visible: false
+    });
 
-function initMap() {
-    map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: -34.397, lng: 150.644 },
-        zoom: 8,
+    //Assign the infobox to a map instance.
+    infobox.setMap(map);
+
+    //Load the Bing Spatial Data Services module.
+    Microsoft.Maps.loadModule('Microsoft.Maps.SpatialDataService', function () {
+        //Add an event handler for when the map moves.
+        Microsoft.Maps.Events.addHandler(map, 'viewchangeend', getNearByLocations);
+
+        //Trigger an initial search.
+        getNearByLocations();
+
     });
 }
+
+function getNearByLocations() {
+    //Remove any existing data from the map.
+    map.entities.clear();
+
+    //Create a query to get nearby data.
+    var queryOptions = {
+        queryUrl: sdsDataSourceUrl,
+        spatialFilter: {
+            spatialFilterType: 'nearby',
+            location: map.getCenter(),
+            radius: 25
+        },
+        //Filter to retrieve parks.
+        filter: new Microsoft.Maps.SpatialDataService.Filter('EntityTypeID', 'eq', 7947)
+    };
+
+    //Process the query.
+    Microsoft.Maps.SpatialDataService.QueryAPIManager.search(queryOptions, map, function (data) {
+        //Add results to the map.
+        // map.entities.push(data);
+        console.log(data);
+
+        for (var i = 0; i < data.length; i++) {
+
+            var location = {
+                latitude: data[i].geometry.y,
+                longitude: data[i].geometry.x
+            };
+
+            var pin = new Microsoft.Maps.Pushpin(location);
+
+            console.log(location);
+
+            //Store some metadata with the pushpin.
+            pin.metadata = {
+                title: data[i].metadata.DisplayName,
+                id: data[i].id,
+                name: data[i].metadata.DisplayName,
+                description: data[i].metadata.AddressLine
+            };
+
+            console.log(pin.metadata);
+
+            //Add pushpin to the map.
+            map.entities.push(pin);
+            // debugger;
+            //Add a click event handler to the pushpin.
+            Microsoft.Maps.Events.addHandler(pin, 'click', pushpinClicked);
+        }
+    });
+
+}
+
+function pushpinClicked(e) {
+    //Make sure the infobox has metadata to display.
+    if (e.target.metadata) {
+        //Set the infobox options with the metadata of the pushpin.
+        infobox.setOptions({
+            location: e.target.getLocation(),
+            title: e.target.metadata.title,
+            description: e.target.metadata.description,
+            visible: true
+        });
+    }
+}
+
+//end map function
+
+
 class Fetch {
     async getCurrent(input) {
         const myKey = "d4894b22956346da85b407624cc70a42";
@@ -31,7 +116,7 @@ class Fetch {
 
 }
 
-//this is where the api for the weather begins 
+// this is where the api for the weather begins 
 class UI {
     constructor() {
         this.uiContainer = document.getElementById("content");

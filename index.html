@@ -5,6 +5,10 @@
         <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
         <title>DogMaps</title>
         <link rel = "stylesheet" href = "assets/css/style.css">
+        <script src="script.js"></script>
+        <script type='text/javascript'
+            src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AuqWN0H7ork1R33gaSwoiQ-0J7A6XmwHHtCD5UUwQBYa9KYVH9KZL_3i17KseieW'
+            async defer></script>
     </head>
 
 <body>
@@ -46,8 +50,19 @@
     <div id="content">
     </div>
 <!--this holds the information that populates for the weather-->
-     <div class = "container1">
+
+<!-- map containers start -->
+    <div id="map" style='position:relative;width:600px;height:400px;'>
+        <script type="text/javascript">
+            var map;
+                function loadMapScenario() {
+                    map = new Microsoft.Maps.Map(document.getElementById('map'), {
+                    });
+                }
+        </script>
+    </div>
 <!--the weather api information ends-->
+    <div class = "container1">
         <div class = "box1">
             <h1>The Dog Walking App We've All Been Anticipating</h1>
             <p>Have you ever been on a walk or hike with your dog and gotten caught</p>
@@ -114,13 +129,6 @@
   <footer>
     <div>&copy; 2021 Dog Maps, Inc.</div>
   </footer>
-
-
-    <div id="map"></div>
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB17S8T5EobvJH287-4DKPnyZxSzb5GP9s&callback=initMap&libraries=&v=weekly"
-        async></script>
-    <script src="script.js"></script>
 </body>
 
 </html>
