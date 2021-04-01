@@ -5,6 +5,7 @@
 body{
   background-color: rgb(226, 196, 157);
   padding: 0%;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body, html, h1{
@@ -44,54 +45,7 @@ li a {
   align-items: center;
   color: #333;
 }
-/*span{ getting rid of 'o' in 'dogmaps' for paw
-  color:rgb(226, 196, 157);
-} */
 
-/*paw print logo*/
-/*.pad { 
-  width: 7.5px;
-  height: 11px;
-  background-color: #333;
-  border-radius: 50% 50% 40% 40%/ 60% 60% 40% 40%;
-  display: block;
-  position: absolute;
-}*/
-/*.large{ 
-  width: 30px;
-  height: 26px;
-  transform: rotate(50deg);
-  left: 96px;
-  top: 54px;
-  border-radius: 40% 40% 40% 40%/ 60% 60% 40% 40%;
-}
-.small-1{
-  transform: rotate(55deg);
-  left: 110px;
-  top: 42px;
-}
-.small-2{
-  transform: rotate(70deg);
-  left: 120px;
-  top: 48px;
-}
-.small-3{
-  transform: rotate(77deg);
-  position: absolute;
-  left: 126px;
-  top: 58px;
-}
-
-.paw-print-1{
-  opacity: 1;
-  position: sticky;
-  left: -100px;
-  top: 60px;
-  transform: rotate(-40deg);
-  display: table;
-  margin: 0;
-  margin-left: -82px;
-}*/
 
 
 /* the hero image*/
@@ -115,22 +69,35 @@ li a {
   color:rgb(219, 211, 211);
   font-size: larger;
 }
-/*dogmap button*/
-.btn{
-  background-color: rgb(204, 197, 197);
-  border: none;
+
+
+
+#submit{
+  background-color: #ededed;
+  border: 1px solid #ccc;
   color: black;
   font-family: Arial, Helvetica, sans-serif;
-  border-bottom-left-radius: 3px;
-  /*curving edges*/
-  border-top-left-radius: 3px;
-  border-bottom-right-radius: 3px;
-  border-top-right-radius: 3px;
-
-}
-input:focus{ /*gets rid of blue outline in text box*/
+  border-radius: 8px;
   outline: none;
+  cursor: pointer;
 }
+#submit:focus{ /*give submit button a shadow when clicked*/
+  background: #e5e5e5;
+  outline:none;
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+  -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+  box-shadow: inset 0px 0px 5px #c1c1c1;
+}
+
+
+input:focus{ /*get rid of blue outline in textbox*/
+  outline: none;
+} 
+
+
+
+
+
 /*flexbox start*/
 .container1{
   display: flex;
@@ -169,8 +136,22 @@ overflow: hidden;
   color:rgb(219, 211, 211);
 }
 
+/*output styling*/
 
-
+#content{
+float: right;
+margin-top: -200px;
+}
+#searchUser{
+  float: right;
+  margin-right: 95px;
+  margin-top: -250px;
+}
+#submit{
+  float: right;
+  margin-right: 20px;
+  margin-top: -270px;
+}
 
 
 

@@ -37,6 +37,26 @@
   flex-grow: 1;
 }
 
+<<<<<<< Updated upstream
+=======
+.subscribe-form {
+  text-align: center;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+footer {
+  font-size: 15px;
+  text-align: center;
+  font-weight: bold;
+  background-color: #333;
+  color: rgb(226, 196, 157);
+}
+
+.button {
+  background-color: rgb(159, 172, 211)
+}
+
+>>>>>>> Stashed changes
 /* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
 @media screen and (max-width: 980px) {
 }
