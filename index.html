@@ -5,18 +5,23 @@
         <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
         <title>DogMaps</title>
         <link rel = "stylesheet" href = "assets/css/style.css">
+        <link rel="stylesheet" href="./grid.css" />
     </head>
 
 <body>
     <!--Navbar-->
     <nav class = "navbar">
-            <div class = "logo">DogMaps</div>
+            <div class = "logo">Dog Maps</div>
             <ul class = "menu">
-        <li><a href = "#contact-us">Contact Us</a></li>
-        <li><a href = "#privacy-notice">Privacy Notice</a></li>
-        <li><a href = "#friends-nearby">Friends Nearby</a></li>
-        <li><a href = "#your-walks">Your Walks</a></li>
-        <li><a href = "#home">Home</a></li>
+              <li><a href = "#home">Home</a></li>
+              <li><a href = "#your-walks">Your Walks</a></li>
+              <li><a href = "#friends-nearby">Friends Nearby</a></li>
+              <li><a href = "#privacy-notice">Privacy Notice</a></li>
+              <li><a href = "#contact-us">Contact Us</a></li>
+        
+        
+        
+        
             </ul>   
     </nav>
     
@@ -70,33 +75,51 @@
             <p>up the best parks and trails to visit, we've got that covered.</p>
         </div>
     </div>
-  </body>
-</html>           
-         
 
-
-
-
-     
-      
-   
-    
-  
-   
-
-    <h1 class="grid-header">Main Features</h1>
-    <h2 class="grid-description">Introduce the amazing range of ground-breaking features that your new release will include.</h2>
-    <div class="grid-container">
-        <div class="grid-item"><i class="far fa-bell"></i></div>
-        <div class="grid-item"><i class="far fa-chart-bar"></i></div>
-        <div class="grid-item"><i class="fas fa-lock"></i></div>
-        <div class="grid-item"><i class="fas fa-book"></i></div>
-        <div class="grid-item"><i class="far fa-credit-card"></i></div>
-        <div class="grid-item"><i class="fas fa-compass"></i></div>
-        <div class="grid-item"><i class="far fa-comment-alt"></i></div>
-        <div class="grid-item"><i class="fas fa-camera"></i></div>
-        <div class="grid-item"><i class="fab fa-contao"></i></div>
-      </div>
+     <!--Main features grid box-->
+     <h1 class="grid-header">Main Features</h1>
+     <h2 class="grid-description">
+       Introduce the amazing range of ground-breaking features that your new
+       release will include.
+     </h2>
+     <div class="grid-container">
+       <button class="grid-item">
+         <i class="far fa-bell"></i>
+         <div class="icon-description">Friends near by</div>
+       </button>
+       <button class="grid-item">
+         <i class="far fa-chart-bar"></i>
+         <div class="icon-description">Likes on Routes You've Been on</div>
+       </button>
+       <button class="grid-item">
+         <i class="fas fa-lock"></i>
+         <div class="icon-description">Privacy Notice</div>
+       </button>
+       <button class="grid-item">
+         <i class="fas fa-book"></i>
+         <div class="icon-description">History of Dog-Walks</div>
+       </button>
+       <button class="grid-item">
+         <i class="far fa-credit-card"></i>
+         <div class="icon-description">Our Merch Store</div>
+       </button>
+       <button class="grid-item">
+         <i class="fas fa-map-marker-alt"></i>
+         <div class="icon-description">Top Locations of Walks</div>
+       </button>
+       <button class="grid-item">
+         <i class="far fa-comment-alt"></i>
+         <div class="icon-description">Messages</div>
+       </button>
+       <button class="grid-item">
+         <i class="fas fa-camera"></i>
+         <div class="icon-description">Gallery of Your Walks</div>
+       </button>
+       <button class="grid-item">
+         <i class="fas fa-shield-alt"></i>
+         <div class="icon-description">Contact Us</div>
+       </button>
+     </div>
 
 <!--subscribe form-->
 <div class="subscribe-form">
@@ -120,7 +143,11 @@
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB17S8T5EobvJH287-4DKPnyZxSzb5GP9s&callback=initMap&libraries=&v=weekly"
         async></script>
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
+    <script
+      src="https://kit.fontawesome.com/4b94394216.js"
+      crossorigin="anonymous"
+    ></script>
 </body>
 
 </html>
