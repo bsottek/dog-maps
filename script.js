@@ -90,7 +90,7 @@ function getNearByLocations() {
             //Add a click event handler to the pushpin.
             Microsoft.Maps.Events.addHandler(pin, 'click', pushpinClicked);
 
-            weatherStart(data[0].metadata.Locality);
+            weatherStart(data[0].metadata.PostalCode);
         }
 
     });
@@ -112,18 +112,21 @@ function pushpinClicked(e) {
 
 // Weather Api
 
-var api = 'https://api.openweathermap.org/data/2.5/forecast?q=';
+var api = 'https://api.openweathermap.org/data/2.5/forecast?zip=';
 var apiKey = '&appid=8943dc0c0eb19de1fe9d843a0ca2f4fe';
 var apiUV = 'https://api.openweathermap.org/data/2.5/uvi?';
 var units = '&units=imperial&cnt=5';
+var county = ",us";
 
-function weatherStart(locality) {
+function weatherStart(zipcode) {
     // change city in url
     console.log("here");
-    var city = locality;
-    console.log(city);
+    var zip = zipcode;
+    console.log(zip);
 
-    var url = api + city + apiKey + units;
+    var url = api + zip + county + apiKey + units;
+
+    console.log(url);
 
     fetch(url)
         .then(response => response.json())
@@ -135,42 +138,22 @@ function getData(data) {
 
     var city = data.city.name;
 
-    while (i < data.list.length) {
-        // use moment to format day text
+    var temp = data.list[0].main.temp;
+    $("#temp").text(temp + " °F");
 
-        var day = moment(data.list[i].dt_txt, 'YYYY-MM-DD HH:mm:ss').format('LLL');
-        dayElementArr[i].innerText = day;
+    var humidity = data.list[0].main.humidity;
+    $("#humi").text("Humidity: " + humidity + "%");
 
-        var temp = data.list[i].main.temp;
-        tempElementArr[i].innerText = temp + " °F";
+    var condition = data.list[0].weather[0].main;
+    $("#condi").text(condition);
 
-        var humidity = data.list[i].main.humidity;
-        humidityElementArr[i].innerText = "Humidity: " + humidity + "%";
+    
 
-        var condition = data.list[i].weather[0].main;
-        conditionElementArr[i].innerText = condition;
+    console.log(temp, humidity, city, condition);
+    i++;
 
-        if (condition === "Rain") {
-            imgArr[i].src = "assets/rain.png";
-        };
-        if (condition === "Clear") {
-            imgArr[i].src = "assets/sunny.png";
-        };
-        if (condition === "Clouds") {
-            imgArr[i].src = "assets/cloudy.png";
-        };
-        if (condition === "Snow") {
-            imgArr[i].src = "assets/snow.png";
-        };
 
-        console.log(day, temp, humidity, city, condition);
-        i++;
-    };
-
-    $('#city-jumbo').text(city);
-    $('#temp-jumbo').text(data.list[0].main.temp + " °F");
-    $('#humidity-jumbo').text("Humidity: " + data.list[0].main.humidity + "%");
-    $('#wind-jumbo').text("Wind Speed: " + data.list[0].wind.speed + " MPH");
+    
 
     var lat = data.city.coord.lat;
     var lon = data.city.coord.lon;
@@ -183,59 +166,59 @@ function getData(data) {
 
 };
 
-// function getUV(data) {
-//     var uv = data.value;
-//     $('#uv-jumbo').text("UV Index: " + uv);
+function getUV(data) {
+    var uv = data.value;
+    $('#uv-jumbo').text("UV Index: " + uv);
 
-//     if (uv <= 2) {
-//         //color blue
-//         $('#uv-jumbo').removeClass("bg-success");
-//         $('#uv-jumbo').removeClass("bg-warning");
-//         $('#uv-jumbo').removeClass("bg-danger");
-//         $('#uv-jumbo').removeClass("bg-dark");
-//         $('#uv-jumbo').removeClass("text-dark");
-//         $('#uv-jumbo').addClass("text-white");
-//         $('#uv-jumbo').addClass("bg-primary");
-//     };
-//     if (uv >= 2.00 && uv <= 5.00) {
-//         //color green
-//         $('#uv-jumbo').removeClass("bg-primary");
-//         $('#uv-jumbo').removeClass("bg-warning");
-//         $('#uv-jumbo').removeClass("bg-danger");
-//         $('#uv-jumbo').removeClass("bg-dark");
-//         $('#uv-jumbo').removeClass("text-dark");
-//         $('#uv-jumbo').addClass("text-white");
-//         $('#uv-jumbo').addClass("bg-success");
-//     };
-//     if (uv >= 5.00 && uv <= 7.00) {
-//         //color yellow
-//         $('#uv-jumbo').removeClass("bg-success");
-//         $('#uv-jumbo').removeClass("bg-primary");
-//         $('#uv-jumbo').removeClass("bg-danger");
-//         $('#uv-jumbo').removeClass("bg-dark");
-//         $('#uv-jumbo').removeClass("text-white");
-//         $('#uv-jumbo').addClass("text-dark");
-//         $('#uv-jumbo').addClass("bg-warning");
-//     };
-//     if (uv >= 7.00 && uv <= 10.00) {
-//         //color red
-//         $('#uv-jumbo').removeClass("bg-warning");
-//         $('#uv-jumbo').removeClass("bg-success");
-//         $('#uv-jumbo').removeClass("bg-primary");
-//         $('#uv-jumbo').removeClass("bg-dark");
-//         $('#uv-jumbo').removeClass("text-dark");
-//         $('#uv-jumbo').addClass("text-white");
-//         $('#uv-jumbo').addClass("bg-danger");
-//     };
-//     if (uv >= 10.00) {
-//         //color black
-//         $('#uv-jumbo').removeClass("bg-danger");
-//         $('#uv-jumbo').removeClass("bg-warning");
-//         $('#uv-jumbo').removeClass("bg-success");
-//         $('#uv-jumbo').removeClass("bg-primary");
-//         $('#uv-jumbo').removeClass("text-dark");
-//         $('#uv-jumbo').addClass("text-white");
-//         $('#uv-jumbo').addClass("bg-dark");
-//     };
+    if (uv <= 2) {
+        //color blue
+        $('#uv-jumbo').removeClass("bg-success");
+        $('#uv-jumbo').removeClass("bg-warning");
+        $('#uv-jumbo').removeClass("bg-danger");
+        $('#uv-jumbo').removeClass("bg-dark");
+        $('#uv-jumbo').removeClass("text-dark");
+        $('#uv-jumbo').addClass("text-white");
+        $('#uv-jumbo').addClass("bg-primary");
+    };
+    if (uv >= 2.00 && uv <= 5.00) {
+        //color green
+        $('#uv-jumbo').removeClass("bg-primary");
+        $('#uv-jumbo').removeClass("bg-warning");
+        $('#uv-jumbo').removeClass("bg-danger");
+        $('#uv-jumbo').removeClass("bg-dark");
+        $('#uv-jumbo').removeClass("text-dark");
+        $('#uv-jumbo').addClass("text-white");
+        $('#uv-jumbo').addClass("bg-success");
+    };
+    if (uv >= 5.00 && uv <= 7.00) {
+        //color yellow
+        $('#uv-jumbo').removeClass("bg-success");
+        $('#uv-jumbo').removeClass("bg-primary");
+        $('#uv-jumbo').removeClass("bg-danger");
+        $('#uv-jumbo').removeClass("bg-dark");
+        $('#uv-jumbo').removeClass("text-white");
+        $('#uv-jumbo').addClass("text-dark");
+        $('#uv-jumbo').addClass("bg-warning");
+    };
+    if (uv >= 7.00 && uv <= 10.00) {
+        //color red
+        $('#uv-jumbo').removeClass("bg-warning");
+        $('#uv-jumbo').removeClass("bg-success");
+        $('#uv-jumbo').removeClass("bg-primary");
+        $('#uv-jumbo').removeClass("bg-dark");
+        $('#uv-jumbo').removeClass("text-dark");
+        $('#uv-jumbo').addClass("text-white");
+        $('#uv-jumbo').addClass("bg-danger");
+    };
+    if (uv >= 10.00) {
+        //color black
+        $('#uv-jumbo').removeClass("bg-danger");
+        $('#uv-jumbo').removeClass("bg-warning");
+        $('#uv-jumbo').removeClass("bg-success");
+        $('#uv-jumbo').removeClass("bg-primary");
+        $('#uv-jumbo').removeClass("text-dark");
+        $('#uv-jumbo').addClass("text-white");
+        $('#uv-jumbo').addClass("bg-dark");
+    };
 
-// };
+};
