@@ -32,7 +32,7 @@ nav {
   text-align: center;
   display: flex;
   flex-wrap:wrap;
-  justify-content: space-between;
+  /*justify-content: space-between;
   /*overflow: hidden;*/
 }
 
@@ -85,11 +85,23 @@ nav a {
   font-size: larger;
 }
 
-.btn{
-  background-color: rgb(204, 197, 197);
+.button1 {
+  background-color: rgb(255, 255, 255, 0.952);
   border: none;
   color: black;
   font-family: Arial, Helvetica, sans-serif;
+  padding: 10px 50px;
+  border-radius: 30px;
+  font-size: 18px;
+}
+
+.form-control {
+    padding: 10px 20px;
+    width: 50%;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.952);
+    text-align: center;
 }
 
 

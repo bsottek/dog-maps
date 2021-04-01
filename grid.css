@@ -55,6 +55,17 @@ footer {
 
 /* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
 @media screen and (max-width: 980px) {
+  .logo {
+    width: 100%;
+    text-align: center;
+  }
+
+  .menu {
+    margin-top: 20px;
+    justify-content: center;
+    width: 100%;
+  }
+
 }
 
 /* MEDIA QUERY FOR TABLETS AND SMALLER */
