@@ -1,0 +1,46 @@
+*{
+    text-decoration: none;
+  }
+  
+  body{
+    background-color: rgb(226, 196, 157);
+    padding: 0%;
+  }
+  
+  body, html, h1{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  
+  /*navbar*/
+  .navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  
+  }
+  .navbar a:hover{
+    color: rgb(226, 196, 157);
+    transition: 0.5s ease-in-out 0s; /*gradual transition*/
+    opacity: 8;
+  }
+  li{
+    float: right;
+  }
+  li a {
+    display: block;
+    color: whitesmoke;
+    text-align: center;
+    padding: 14px 16px;
+  }
+  .logo{
+    font-size: 42px;
+    font-weight: bold;
+    align-items: center;
+    color: #333;
+  }
