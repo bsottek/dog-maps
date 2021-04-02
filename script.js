@@ -1,122 +1,224 @@
-// This is a prototype for google maps api
-// by Dallas Yatsinko
+// //start map function
 
-const apiKey = "key=AIzaSyB17S8T5EobvJH287-4DKPnyZxSzb5GP9s";
+var map;
 
+//Query URL to the NAVTEQ POI data source
+var sdsDataSourceUrl = "http://spatial.virtualearth.net/REST/v1/data/Microsoft/PointsOfInterest";
 
-let map;
+function GetMap() {
+    map = new Microsoft.Maps.Map('#map', {});
 
-function initMap() {
-    map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: -34.397, lng: 150.644 },
-        zoom: 8,
+    //Create an infobox at the center of the map but don't show it.
+    infobox = new Microsoft.Maps.Infobox(map.getCenter(), {
+        visible: false
+    });
+
+    navigator.geolocation.getCurrentPosition(function (position) {
+        var loc = new Microsoft.Maps.Location(
+            position.coords.latitude,
+            position.coords.longitude);
+
+        //Add a pushpin at the user's location.
+        var pin = new Microsoft.Maps.Pushpin(loc);
+        map.entities.push(pin);
+
+        //Center the map on the user's location.
+        map.setView({ center: loc });
+    });
+
+    //Assign the infobox to a map instance.
+    infobox.setMap(map);
+
+    //Load the Bing Spatial Data Services module.
+    Microsoft.Maps.loadModule('Microsoft.Maps.SpatialDataService', function () {
+        //Add an event handler for when the map moves.
+        Microsoft.Maps.Events.addHandler(map, 'viewchangeend', getNearByLocations);
+
+        //Trigger an initial search.
+        getNearByLocations();
+
     });
 }
-class Fetch {
-    async getCurrent(input) {
-        const myKey = "d4894b22956346da85b407624cc70a42";
 
-        //make request to url
+function getNearByLocations() {
+    //Remove any existing data from the map.
+    map.entities.clear();
 
-        const response = await fetch(
-            `http://api.weatherbit.io/v2.0/forecast/daily?key=${myKey}&units=I&days=1&postal_code=${input}&city=${input}`
-        );
+    //Create a query to get nearby data.
+    var queryOptions = {
+        queryUrl: sdsDataSourceUrl,
+        spatialFilter: {
+            spatialFilterType: 'nearby',
+            location: map.getCenter(),
+            radius: 25
+        },
+        //Filter to retrieve Parks.
+        filter: new Microsoft.Maps.SpatialDataService.Filter('EntityTypeID', 'eq', 7947)
+    };
 
-        const data = await response.json();
-        //return zip code out of data
+    //Process the query.
+    Microsoft.Maps.SpatialDataService.QueryAPIManager.search(queryOptions, map, function (data) {
+        //Add results to the map.
+        // map.entities.push(data);
         console.log(data);
+        console.log(data[0].metadata.Locality);
 
-        return data;
-    }
+        for (var i = 0; i < data.length; i++) {
 
-}
+            var location = {
+                latitude: data[i].geometry.y,
+                longitude: data[i].geometry.x
+            };
 
-//this is where the api for the weather begins 
-class UI {
-    constructor() {
-        this.uiContainer = document.getElementById("content");
-        this.city;
-        this.defaultCity = "Nashville";
-    }
+            var pin = new Microsoft.Maps.Pushpin(location);
 
-    populateUI(data) {
-        //de-structure vars
-        console.log(data);
-        console.log(data.data);
-        console.log(data.data[0]);
-        console.log(data.data[0].high_temp);
-        //add them to inner HTML
+            console.log(location);
 
-        this.uiContainer.innerHTML = `
-        
-        <div class="card mx-auto mt-5" style="width: 18rem;">
-            <div class="card-body justify-content-center">
-                <h5 class="card-title">${data.data[0].datetime}-Date</h5>
-                <h5 class="card-title">${data.data[0].high_temp}-High-Temp</h5>
-                <h5 class="card-title">${data.data[0].low_temp}-Low-Temp</h5>
-                <h5 class="card-title">${data.data[0].wind_gust_spd}-Wind Gust Speed</h5>
-                
+            //Store some metadata with the pushpin.
+            pin.metadata = {
+                title: data[i].metadata.DisplayName,
+                id: data[i].id,
+                name: data[i].metadata.DisplayName,
+                description: data[i].metadata.AddressLine
+            };
 
-                
-                
-            </div>
-        </div>
-        
-        
-        `;
-    }
+            console.log(pin.metadata);
 
+            //Add pushpin to the map.
+            map.entities.push(pin);
+            // debugger;
+            //Add a click event handler to the pushpin.
+            Microsoft.Maps.Events.addHandler(pin, 'click', pushpinClicked);
 
-    clearUI() {
-        uiContainer.innerHTML = "";
-    }
-
-    saveToLS(data) {
-        localStorage.setItem("city", JSON.stringify(data));
-    }
-
-    getFromLS() {
-        if (localStorage.getItem("city" == null)) {
-            return this.defaultCity;
-        } else {
-            this.city = JSON.parse(localStorage.getItem("city"));
+            weatherStart(data[0].metadata.PostalCode);
         }
 
-        return this.city;
-    }
+    });
 
-    clearLS() {
-        localStorage.clear();
+}
+
+function pushpinClicked(e) {
+    //Make sure the infobox has metadata to display.
+    if (e.target.metadata) {
+        //Set the infobox options with the metadata of the pushpin.
+        infobox.setOptions({
+            location: e.target.getLocation(),
+            title: e.target.metadata.title,
+            description: e.target.metadata.description,
+            visible: true
+        });
     }
 }
 
-//app beggins but can be split maybe.
-//inst classes//
+// Weather Api
 
-const ft = new Fetch();
-const ui = new UI();
+var api = 'https://api.openweathermap.org/data/2.5/forecast?zip=';
+var apiKey = '&appid=8943dc0c0eb19de1fe9d843a0ca2f4fe';
+var apiUV = 'https://api.openweathermap.org/data/2.5/uvi?';
+var units = '&units=imperial&cnt=5';
+var county = ",us";
 
-//add event listeners//
+function weatherStart(zipcode) {
+    // change city in url
+    console.log("here");
+    var zip = zipcode;
+    console.log(zip);
 
-const search = document.getElementById("searchUser");
-const button = document.getElementById("submit");
-button.addEventListener("click", () => {
-    const currentVal = search.value;
+    var url = api + zip + county + apiKey + units;
 
-    ft.getCurrent(currentVal).then((data) => {
-        console.log(data);
-        //call a UI method//
-        ui.populateUI(data);
-        //call saveToLS
-        ui.saveToLS(data);
-    });
-});
+    console.log(url);
 
-//event listener for local storage
+    fetch(url)
+        .then(response => response.json())
+        .then(data => getData(data));
+};
 
-window.addEventListener("DOMContentLoaded", () => {
-    const dataSaved = ui.getFromLS();
-    // ui.populateUI(dataSaved);
-});
+function getData(data) {
+    var i = 0;
 
-//this is where the weather api ends
+    var city = data.city.name;
+
+    var temp = data.list[0].main.temp;
+    $("#temp").text(temp + " °F");
+
+    var humidity = data.list[0].main.humidity;
+    $("#humi").text("Humidity: " + humidity + "%");
+
+    var condition = data.list[0].weather[0].main;
+    $("#condi").text(condition);
+
+    
+
+    console.log(temp, humidity, city, condition);
+    i++;
+
+
+    
+
+    var lat = data.city.coord.lat;
+    var lon = data.city.coord.lon;
+
+    var url2 = apiUV + "lat=" + lat + "&lon=" + lon + apiKey;
+
+    fetch(url2)
+        .then(response => response.json())
+        .then(data => getUV(data));
+
+};
+
+function getUV(data) {
+    var uv = data.value;
+    $('#uv-jumbo').text("UV Index: " + uv);
+
+    if (uv <= 2) {
+        //color blue
+        $('#uv-jumbo').removeClass("bg-success");
+        $('#uv-jumbo').removeClass("bg-warning");
+        $('#uv-jumbo').removeClass("bg-danger");
+        $('#uv-jumbo').removeClass("bg-dark");
+        $('#uv-jumbo').removeClass("text-dark");
+        $('#uv-jumbo').addClass("text-white");
+        $('#uv-jumbo').addClass("bg-primary");
+    };
+    if (uv >= 2.00 && uv <= 5.00) {
+        //color green
+        $('#uv-jumbo').removeClass("bg-primary");
+        $('#uv-jumbo').removeClass("bg-warning");
+        $('#uv-jumbo').removeClass("bg-danger");
+        $('#uv-jumbo').removeClass("bg-dark");
+        $('#uv-jumbo').removeClass("text-dark");
+        $('#uv-jumbo').addClass("text-white");
+        $('#uv-jumbo').addClass("bg-success");
+    };
+    if (uv >= 5.00 && uv <= 7.00) {
+        //color yellow
+        $('#uv-jumbo').removeClass("bg-success");
+        $('#uv-jumbo').removeClass("bg-primary");
+        $('#uv-jumbo').removeClass("bg-danger");
+        $('#uv-jumbo').removeClass("bg-dark");
+        $('#uv-jumbo').removeClass("text-white");
+        $('#uv-jumbo').addClass("text-dark");
+        $('#uv-jumbo').addClass("bg-warning");
+    };
+    if (uv >= 7.00 && uv <= 10.00) {
+        //color red
+        $('#uv-jumbo').removeClass("bg-warning");
+        $('#uv-jumbo').removeClass("bg-success");
+        $('#uv-jumbo').removeClass("bg-primary");
+        $('#uv-jumbo').removeClass("bg-dark");
+        $('#uv-jumbo').removeClass("text-dark");
+        $('#uv-jumbo').addClass("text-white");
+        $('#uv-jumbo').addClass("bg-danger");
+    };
+    if (uv >= 10.00) {
+        //color black
+        $('#uv-jumbo').removeClass("bg-danger");
+        $('#uv-jumbo').removeClass("bg-warning");
+        $('#uv-jumbo').removeClass("bg-success");
+        $('#uv-jumbo').removeClass("bg-primary");
+        $('#uv-jumbo').removeClass("text-dark");
+        $('#uv-jumbo').addClass("text-white");
+        $('#uv-jumbo').addClass("bg-dark");
+    };
+
+};
