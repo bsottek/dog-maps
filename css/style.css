@@ -77,12 +77,13 @@ footer.page-footer {
 .privacy-content {
   width: 80%;
   margin: auto;
-  color: #ffd54f !important;
+  color: #795548!important;
+  font-weight: 200;
 }
 
 .privacy-content h3 {
-  font-weight: bold;
-  font-size: 25px;
+  font-weight: 800;
+  font-size: 30px;
   margin: 20px 0;
 }
 
@@ -91,9 +92,11 @@ footer.page-footer {
 }
 
 .privacy-content ul li {
-  color: #444;
+  color: #ffca28;
   margin: 10px 0;
   list-style: circle !important;
+  font-weight: 600;
+  font-style: oblique;
 }
 
 .privacy-footer {
@@ -104,6 +107,7 @@ footer.page-footer {
   text-align: center;
   padding: 10px 20px;
   font-size: 20px;
+  font-style: oblique;
   color: #795548 !important;
 
 }
@@ -113,7 +117,7 @@ footer.page-footer {
   color: #795548 !important;
   margin: 0;
   line-height: 1.3;
-  font-size: 20px;
+  font-size: 40px;
 
 }
 
