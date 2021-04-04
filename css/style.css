@@ -56,20 +56,22 @@ footer.page-footer {
   margin: 0;
 }
 
+
 .privacy-hero {
-  background-image: url(/img/img8.jpg);
-  background-attachment: fixed;
-  text-align: center;
+  background-image: url(../img/img3.jpg);
+  background-size: cover;
+  background-position: center;
+  text-align: right;
+  padding: 70px;
+  margin-bottom: 50px;
 }
 
 .privacy-title {
-  color: #444;
   font-style: italic;
   font-size: 42px;
   border-bottom: 5px solid #ffd54f;
-  text-align: center;
   display: inline-block;
-  padding: 10px 70px;
+  padding: 10px;
 }
 
 .privacy-content {
@@ -91,8 +93,9 @@ footer.page-footer {
 .privacy-content ul li {
   color: #444;
   margin: 10px 0;
-  display: list-item;
+  list-style: circle !important;
 }
+
 .privacy-footer {
   background-color: #ffca28 !important;
   display: flex;
