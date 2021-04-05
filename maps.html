@@ -35,15 +35,47 @@
 
     <div class="container">
         <div class="section">
-
             <div class="row">
                 <div class="col s12 center">
-                    <h3><i class="mdi-content-send brown-text"></i></h3>
+
+
                     <h4>Maps</h4>
-                    <p id="temp"></p>
-                    <p id="humi"></p>
-                    <p id="condi"></p>
+
+                    <div class="row">
+                        <div class="container col s12 center">
+                            <p class="col s3 card-panel yellow lighten-3" id="temp" href=""></p>
+                            <p class="col s3 card-panel yellow lighten-2" id="humi" href=""></p>
+                            <p class="col s3 card-panel yellow lighten-1" id="condi" href=""></p>
+                            <p class="col s3 card-panel yellow" id="uv" href=""></p>
+                        </div>
+                    </div>
+
+
                     <div id="map" style="position:relative;width:px;height:400px;"></div>
+
+                    <div class="row">
+                        <div class="col s12 center">
+                            <div class="card amber lighten-1">
+                                <div class="card-content black-text">
+                                    <span class="card-title">Results</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table class="striped">
+                        <thead>
+                            <tr>
+                                <th>Park Name</th>
+                                <th>Address</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="list-tab">
+
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
 
