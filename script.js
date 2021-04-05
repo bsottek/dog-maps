@@ -3,7 +3,7 @@
 var map;
 
 //Query URL to the NAVTEQ POI data source
-var sdsDataSourceUrl = "http://spatial.virtualearth.net/REST/v1/data/Microsoft/PointsOfInterest";
+var sdsDataSourceUrl = "https://spatial.virtualearth.net/REST/v1/data/Microsoft/PointsOfInterest";
 
 function GetMap() {
     map = new Microsoft.Maps.Map('#map', {});
